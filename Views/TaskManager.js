@@ -1,22 +1,31 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, Image, ScrollView } from "react-native";
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { tasksStore } from "../src/stores/taskStore";
 import { useNavigation } from '@react-navigation/native';
 
 const TaskManager = ({route}) => {
+    const imgData = route.params
     const navigation = useNavigation()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const image = ''
+
+    let image;
+    if (imgData !== undefined) {
+        image = <Image source={imgData} style={{width: 400, height: 200}}/>
+    } else {
+        image = <Text style={styles.text}>Sem Imagem</Text>
+    }
+
     const clearInput = function () {
         setTitle(''),
         setDescription(''),
         alert('Tarefa Criada')
     }
+
     return (
-        <View style={styles.Wrapper}>
+        <ScrollView style={styles.Wrapper}>
             <TextInput
                 style={styles.titleInput}
                 placeholder={'Título'}
@@ -30,6 +39,7 @@ const TaskManager = ({route}) => {
                 value={description}
                 onChangeText={value => setDescription(value)}
             />
+            <View style={styles.image}>{image}</View>
             <Pressable 
                 style={styles.button}
                 onPress= {() => navigation.navigate('Camera')}
@@ -38,13 +48,13 @@ const TaskManager = ({route}) => {
             </Pressable>
             <Pressable style={styles.button}
                 onPressIn = {() => tasksStore.addTask({
-                    title, description
+                    title, description, imgData
                 })}
                 onPressOut = {clearInput}
             >
                 <Text style={styles.buttonText}>Salvar</Text>
             </Pressable>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -53,7 +63,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         flexDirection: 'column',
-        alignItems: 'center',
     },
     titleInput: {
         width: '100%',
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 15,
-        marginBottom: 150
+        marginBottom: 30
     },
     icon: {
         color: '#fff'
@@ -93,6 +102,20 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 24,
 
+    },
+    image:{
+        flex: 1,
+        minHeight: 100,
+        borderWidth: 2,
+        borderRadius: 10,
+        marginBottom: 20,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    text:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 });
 

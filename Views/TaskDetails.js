@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, Image } from "react-native";
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { tasksStore } from "../src/stores/taskStore";
@@ -15,6 +15,7 @@ const TaskDetails = ({route}) => {
             </View>
             <Text>{item.title}</Text>
             <Text>{item.description}</Text>
+            <Image source={item.imgData} style={{width: 400, height: 200}}/>
         </View>
     )
 }
