@@ -18,7 +18,7 @@ const TaskList = () => {
               <View key={item.id} style={styles.item}>
                 <View style={styles.iLeft}>
                   <View style={styles.circle}></View>
-                  <Text style={styles.itemTitle}>{item.date} - {item.title}</Text>
+                  <Text style={styles.itemTitle}>{item.date.toLocaleDateString('pt-BR')} - {item.title}</Text>
                 </View>
                 <View style={styles.iconsWrapper}>
                   <Pressable onPress={() => navigation.navigate('Details', item.id)}>

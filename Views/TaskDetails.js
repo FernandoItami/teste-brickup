@@ -8,14 +8,21 @@ const TaskDetails = ({route}) => {
     
     const id = route.params
     const item = tasksStore.tasks.find(task => task.id === id)
+    const imgPath = item.imagePath
+    let img;
+    if (item.imagePath !== 'empty') {
+        img = <Image source={{uri:imgPath}} style={{width: 350, height: 200}}/>
+    } else {
+        img = <Image source={require("../src/Images/noimage.jpg")} style={{width: 350, height: 200}}/>
+    }
     return (
         <View style={styles.Wrapper}>
             <View style={styles.txtWrapper}>
-                <Text style={styles.text}>Data: {item.date}</Text>
+                <Text style={styles.text}>Data: {item.date.toLocaleDateString("pt-BR")}</Text>
                 <Text style={styles.text}>Tarefa: {item.title}</Text>
-                <Text style={styles.text}>Descrição: {item.description}</Text>
+                <Text style={styles.text}>Descrição: {item.desc}</Text>
             </View>
-            <Image source={item.imgData} style={{width: 350, height: 200}}/>
+            {img}
         </View>
     )
 }

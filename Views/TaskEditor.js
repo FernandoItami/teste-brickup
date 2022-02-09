@@ -7,11 +7,9 @@ const TaskEditor = ({route}) => {
     const id = route.params
     const item = tasksStore.tasks.find(task => task.id === id)
     const [title, setTitle] = useState(item.title)
-    const [description, setDescription] = useState(item.description)
+    const [description, setDescription] = useState(item.desc)
 
-    const clearInput = function () {
-        setTitle(''),
-        setDescription(''),
+    const alerta = function () {
         alert('Tarefa Atualizada')
     }
 
@@ -34,7 +32,7 @@ const TaskEditor = ({route}) => {
                 onPressIn = {() => tasksStore.updateTask({
                     title, description, id
                 })}
-                onPressOut = {clearInput}
+                onPressOut = {alerta}
             >
                 <Text style={styles.buttonText}>Salvar</Text>
             </Pressable>

@@ -6,9 +6,10 @@ import TaskEditor from './Views/TaskEditor';
 import Camera from './components/Camera'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { tasksStore } from './src/stores/taskStore';
 
 const Stack = createNativeStackNavigator();
-
+tasksStore.updateList()
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>

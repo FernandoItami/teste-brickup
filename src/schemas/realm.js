@@ -7,7 +7,7 @@ TaskSchema.schema = {
         id: 'int',
         date: 'date',
         title: 'string',
-        description: 'string',
+        desc: 'string',
         imagePath: 'string'
     },
   primaryKey: 'id',
