@@ -1,8 +1,8 @@
 import { Realm } from '@realm/react';
 
-class Tasks extends Realm.Object {}
-Tasks.schema = {
-    name: 'Tasks',
+class TaskSchema extends Realm.Object {}
+TaskSchema.schema = {
+    name: 'Task',
     properties: {
         id: 'int',
         date: 'date',
@@ -13,4 +13,4 @@ Tasks.schema = {
   primaryKey: 'id',
 };
 
-export default new Realm({schema: [Tasks]})
+export default new Realm({schema: [TaskSchema]})

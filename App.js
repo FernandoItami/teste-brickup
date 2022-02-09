@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import TaskList from './Views/TaskList';
 import TaskManager from './Views/TaskManager';
 import TaskDetails from './Views/TaskDetails';
+import TaskEditor from './Views/TaskEditor';
 import Camera from './components/Camera'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -49,6 +50,13 @@ export default function App() {
           component={TaskDetails}
           options={{
             title: 'Tarefa',
+          }}
+        />
+        <Stack.Screen 
+          name='Editor'
+          component={TaskEditor}
+          options={{
+            title: 'Editar',
           }}
         />
         <Stack.Screen 

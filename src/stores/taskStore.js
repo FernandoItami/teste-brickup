@@ -1,5 +1,5 @@
 import { observable, action, makeObservable } from 'mobx';
-import Tasks from '../schemas/realm';
+import TaskSchema from '../schemas/realm';
 
 class taskStore {
 
@@ -10,7 +10,7 @@ class taskStore {
             tasks: observable,
             addTask: action,
             deleteTask: action,
-            //editTask: action
+            updateTask: action
         })
     }
 
@@ -21,6 +21,14 @@ class taskStore {
 
     deleteTask(id) {
         this.tasks = this.tasks.filter(task => task.id !== id)
+    }
+
+    updateTask(item) {
+        let task = tasksStore.tasks.find(task => task.id === item.id)
+        task.title = item.title
+        task.description = item.description
+        task.date = new Date().toLocaleDateString('pt-BR')
+        console.log()
     }
 
 }

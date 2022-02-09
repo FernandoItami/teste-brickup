@@ -10,12 +10,12 @@ const TaskDetails = ({route}) => {
     const item = tasksStore.tasks.find(task => task.id === id)
     return (
         <View style={styles.Wrapper}>
-            <View>
-                <Text>{item.date}</Text>
+            <View style={styles.txtWrapper}>
+                <Text style={styles.text}>Data: {item.date}</Text>
+                <Text style={styles.text}>Tarefa: {item.title}</Text>
+                <Text style={styles.text}>Descrição: {item.description}</Text>
             </View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
-            <Image source={item.imgData} style={{width: 400, height: 200}}/>
+            <Image source={item.imgData} style={{width: 350, height: 200}}/>
         </View>
     )
 }
@@ -23,11 +23,23 @@ const TaskDetails = ({route}) => {
 const styles = StyleSheet.create({
     Wrapper: {
         flex: 1,
+        padding: 20,
         paddingTop: 40,
         paddingVertical: 20,
         flexDirection: 'column',
         alignItems: 'center',
-    }
+    },
+    txtWrapper: {
+        width: '100%',
+        padding: 10,
+        backgroundColor: '#fff',
+        marginBottom: 20,
+        borderRadius: 10
+    },
+    text: {
+        fontSize: 25,
+        color: 'orange'
+    },
 });
 
 export default TaskDetails;

@@ -24,7 +24,9 @@ const TaskList = () => {
                   <Pressable onPress={() => navigation.navigate('Details', item.id)}>
                     <FontAwesomeIcon icon={ faEye } size={30} style={styles.icon}/>
                   </Pressable >
-                  <FontAwesomeIcon icon={ faEdit } size={30} style={styles.icon}/>
+                  <Pressable onPress={() => navigation.navigate('Editor', item.id)}>
+                    <FontAwesomeIcon icon={ faEdit } size={30} style={styles.icon}/>
+                  </Pressable>
                   <Pressable onPress={() => tasksStore.deleteTask(item.id)}>
                     <FontAwesomeIcon icon={ faTrashAlt } size={30} style={styles.icon}/>
                   </Pressable>
